@@ -5,6 +5,7 @@ import loginIcon from "./assets/login_icon.svg";
 import fakeLogo from "./assets/fakeLogo.svg";
 import shoppingCart from "./assets/shoppingCart.svg";
 import { Link } from "react-router-dom";
+import { LogoutLink } from "./LogoutLink";
 
 const navigation = [
   { name: "Home", to: "/", current: false },
@@ -14,7 +15,7 @@ const navigation = [
   { name: "Create", to: "/products/new" , current: false},
 ];
 
-function classNames(...classes) {
+export function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
@@ -124,19 +125,7 @@ export function Header() {
                             </a>
                           )}
                         </Menu.Item> */}
-                        <Menu.Item>
-                          {({ active }) => (
-                            <Link
-                              to="/"
-                              className={classNames(
-                                active ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm text-gray-700"
-                              )}
-                            >
-                              Sign out
-                            </Link>
-                          )}
-                        </Menu.Item>
+                        <LogoutLink />
                       </Menu.Items>
                     </Transition>
                   </Menu>
