@@ -1,7 +1,10 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
-import { classNames } from "./Header";
 import { Menu } from "@headlessui/react";
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(" ");
+}
 
 export function LogoutLink() {
   const handleClick = (event) => {

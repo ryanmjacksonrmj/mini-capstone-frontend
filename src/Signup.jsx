@@ -29,7 +29,8 @@ export function Signup() {
           <li key={error}>{error}</li>
         ))}
       </ul>
-      <form onSubmit={handleSubmit} className="max-w-sm px-8">
+      <div className="login-and-signup-form">
+      <form onSubmit={handleSubmit} className="max-w-sm px-8 login-and-signup-form-form-tag">
         <div className="mb-5">
           <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900">
             Name
@@ -78,8 +79,9 @@ export function Signup() {
             required
           />
         </div>
-        <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Signup</button>
+        <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center login-and-signup-button">Signup</button>
       </form>
+      </div>
     </div>
   );
 }

@@ -13,9 +13,10 @@ const navigation = [
   { name: "Genre", to: "/", current: false },
   { name: "Login", to: "/login", current: false },
   { name: "Create", to: "/products/new" , current: false},
+  { name: "README", to: "/readme", current: false},
 ];
 
-export function classNames(...classes) {
+function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
