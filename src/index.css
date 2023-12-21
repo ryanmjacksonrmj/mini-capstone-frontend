@@ -30,21 +30,6 @@ html {
   margin-bottom: 10px;      
 }
 
-#modal-form-button {
-  width: auto;
-  overflow: auto;
-  white-space: nowrap;
-  margin:0px auto;
-}
-
-#modal-destroy-button {
-  float: left;
-}
-
-#modal-update-button {
-  float: right;
-}
-
 #more-info-top {
   padding-bottom: 15px;
 }
@@ -124,12 +109,6 @@ html {
   right: 0.2em;
 }
 
-
-/* .product-name-index {
-  font-weight: bold;
-  font-size: 35px;
-} */
-
 .index-container-target {
   display: flex;
   flex-wrap: wrap;
@@ -139,4 +118,9 @@ html {
   width: 450px;
   height: auto;
   margin: 5px;
+}
+
+.joint-button-container {
+  display: flex;
+  flex-direction: column;
 }

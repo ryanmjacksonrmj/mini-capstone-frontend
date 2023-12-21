@@ -6,21 +6,35 @@ import fakeLogo from "./assets/fakeLogo.svg";
 import shoppingCart from "./assets/shoppingCart.svg";
 import { Link } from "react-router-dom";
 import { LogoutLink } from "./LogoutLink";
+import { LoginLink } from "./LoginLink";
 
-const navigation = [
-  { name: "Home", to: "/", current: false },
-  { name: "Signup", to: "/signup", current: false },
-  { name: "Genre", to: "/", current: false },
-  { name: "Login", to: "/login", current: false },
-  { name: "Create", to: "/products/new" , current: false},
-  { name: "README", to: "/readme", current: false},
-];
+let createNavigation = () => {
+  let navigation;
+  if (localStorage.jwt === undefined) {
+    navigation = [
+      { name: "Home", to: "/", current: false },
+      { name: "Genre", to: "/", current: false },
+      { name: "Signup", to: "/signup", current: false },
+      { name: "README", to: "/readme", current: false },
+    ];
+  } else {
+    // NEED TO FIGURE OUT HOW TO CHECK IF ADMIN ON FRONTEND
+    navigation = [
+      { name: "Home", to: "/", current: false },
+      { name: "Genre", to: "/", current: false },
+      { name: "Create", to: "/products/new", current: false },
+      { name: "README", to: "/readme", current: false },
+    ];
+  }
+  return navigation;
+};
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export function Header() {
+  let navigation = createNavigation();
   return (
     <header>
       <Disclosure as="nav" className="bg-teal-700">
@@ -76,8 +90,10 @@ export function Header() {
                   <Menu as="div" className="relative ml-3">
                     <div>
                       <Menu.Button className="relative flex rounded-full bg-teal-700 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-teal-700">
-                        <span className="absolute -inset-1.5" />
-                        <img className="h-8 w-8 rounded-full filter-white" src={shoppingCart} alt="" />
+                        <Link to="./shoppingcart">
+                          <span className="absolute -inset-1.5" />
+                          <img className="h-8 w-8 rounded-full filter-white" src={shoppingCart} alt="" />
+                        </Link>
                       </Menu.Button>
                     </div>
                   </Menu>
@@ -126,7 +142,7 @@ export function Header() {
                             </a>
                           )}
                         </Menu.Item> */}
-                        <LogoutLink />
+                        {localStorage.jwt === undefined ? <LoginLink /> : <LogoutLink />}
                       </Menu.Items>
                     </Transition>
                   </Menu>

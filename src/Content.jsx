@@ -7,18 +7,28 @@ import { Modal } from "./Modal";
 import { Route, Routes } from "react-router-dom";
 import { Signup } from "./Signup";
 import { Login } from "./Login";
+import { CartedProductsIndex } from "./CartedProductsIndex";
 
 export function Content() {
   const [products, setProducts] = useState([]);
   const [suppliers, setSuppliers] = useState([]);
   const [isProductsShowVisible, setIsProductsShowVisible] = useState(false);
   const [currentProduct, setCurrentProduct] = useState({});
+  const [cartedProducts, setCartedProducts] = useState([]);
 
   const handleIndexProducts = () => {
     console.log("handleIndexProducts");
     axios.get("http://localhost:3000/products.json").then((response) => {
       console.log(response.data);
       setProducts(response.data);
+    });
+  };
+
+  const handleIndexCartedProducts = () => {
+    console.log("handleIndexCartedProducts");
+    axios.get("http://localhost:3000/carted_products.json").then((response) => {
+      console.log(response.data);
+      setCartedProducts(response.data);
     });
   };
 
@@ -83,6 +93,7 @@ export function Content() {
 
   useEffect(handleIndexSuppliers, []);
   useEffect(handleIndexProducts, []);
+  useEffect(handleIndexCartedProducts, []);
 
   return (
     <div>
@@ -97,6 +108,7 @@ export function Content() {
           <Route path="/products/:id" element={<ProductsShow />} />
           <Route path="/products" element={<ProductsIndex products={products} onShowProduct={handleShowProduct} />} />
           <Route path="/" element={<ProductsIndex products={products} onShowProduct={handleShowProduct} />} />
+          <Route path="/shoppingcart" element={<CartedProductsIndex products={cartedProducts} />} />
         </Routes>
         <Modal show={isProductsShowVisible} onClose={handleClose}>
           <ProductsShow
