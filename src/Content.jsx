@@ -8,6 +8,7 @@ import { Route, Routes } from "react-router-dom";
 import { Signup } from "./Signup";
 import { Login } from "./Login";
 import { CartedProductsIndex } from "./CartedProductsIndex";
+import { ProductsShow2 } from "./ProductsShow2";
 
 export function Content() {
   const [products, setProducts] = useState([]);
@@ -15,6 +16,7 @@ export function Content() {
   const [isProductsShowVisible, setIsProductsShowVisible] = useState(false);
   const [currentProduct, setCurrentProduct] = useState({});
   const [cartedProducts, setCartedProducts] = useState([]);
+  const [isAdmin, setIsAdmin] = useState(false);
 
   const handleIndexProducts = () => {
     console.log("handleIndexProducts");
@@ -91,9 +93,28 @@ export function Content() {
     });
   };
 
+  const handleIsAdmin = () => {
+    setIsAdmin(localStorage.admin);
+  };
+
   useEffect(handleIndexSuppliers, []);
   useEffect(handleIndexProducts, []);
   useEffect(handleIndexCartedProducts, []);
+  useEffect(handleIsAdmin, []);
+
+  function pickShow(isAdmin) {
+    if (isAdmin) {
+      return (
+        <ProductsShow
+          product={currentProduct}
+          onUpdateProduct={handleUpdateProduct}
+          onDestroyProduct={handleDestroyProduct}
+        />
+      );
+    } else {
+      return <ProductsShow2 product={currentProduct} />;
+    }
+  }
 
   return (
     <div>
@@ -105,17 +126,14 @@ export function Content() {
             path="/products/new"
             element={<ProductsNew onCreateProduct={handleCreateProduct} suppliers={suppliers} />}
           />
-          <Route path="/products/:id" element={<ProductsShow />} />
+          <Route path="/products-edit/:id" element={<ProductsShow />} />
           <Route path="/products" element={<ProductsIndex products={products} onShowProduct={handleShowProduct} />} />
           <Route path="/" element={<ProductsIndex products={products} onShowProduct={handleShowProduct} />} />
-          <Route path="/shoppingcart" element={<CartedProductsIndex products={cartedProducts} />} />
+          <Route path="/shoppingcart" element={<CartedProductsIndex cartedProducts={cartedProducts} />} />
+          <Route path="/products/:id" element={<ProductsShow2 />} />
         </Routes>
         <Modal show={isProductsShowVisible} onClose={handleClose}>
-          <ProductsShow
-            product={currentProduct}
-            onUpdateProduct={handleUpdateProduct}
-            onDestroyProduct={handleDestroyProduct}
-          />
+          {pickShow(isAdmin)}
         </Modal>
       </div>
     </div>

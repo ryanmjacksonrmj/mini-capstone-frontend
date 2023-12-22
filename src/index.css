@@ -92,7 +92,7 @@ html {
 .modal-main {
   position: fixed;
   background: white;
-  width: 80%;
+  width: 60%;
   height: auto;
   top: 50%;
   left: 50%;
@@ -123,4 +123,25 @@ html {
 .joint-button-container {
   display: flex;
   flex-direction: column;
+  border: 2px;
 }
+
+#entire-form-container {
+  border: 2px;
+}
+
+#entire-form-except-button-container {
+width: 100%;
+border: 2px;
+}
+
+#submit-button-container {
+  border: 2px;
+}
+
+#destroy-button-container {
+  border: 2px;
+
+}
+
+

@@ -14,15 +14,22 @@ let createNavigation = () => {
     navigation = [
       { name: "Home", to: "/", current: false },
       { name: "Genre", to: "/", current: false },
-      { name: "Signup", to: "/signup", current: false },
+      { name: "Sign-up", to: "/signup", current: false },
+      { name: "Login", to: "/login", current: false },
       { name: "README", to: "/readme", current: false },
     ];
-  } else {
+  } else if (localStorage.admin === true) {
     // NEED TO FIGURE OUT HOW TO CHECK IF ADMIN ON FRONTEND
     navigation = [
       { name: "Home", to: "/", current: false },
       { name: "Genre", to: "/", current: false },
       { name: "Create", to: "/products/new", current: false },
+      { name: "README", to: "/readme", current: false },
+    ];
+  } else {
+    navigation = [
+      { name: "Home", to: "/", current: false },
+      { name: "Genre", to: "/", current: false },
       { name: "README", to: "/readme", current: false },
     ];
   }
