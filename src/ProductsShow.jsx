@@ -10,7 +10,7 @@ export function ProductsShow(props) {
   };
 
   return (
-    <div className="joint-button-container flex">
+    <div className="joint-form-container">
       <form onSubmit={handleSubmit}>
         <div id="entire-form-container">
           <div id="entire-form-except-button-container">
@@ -53,24 +53,27 @@ export function ProductsShow(props) {
               </textarea>
             </div>
           </div>
-          <div id="submit-button-container">
+          <div id="button-container">
+            <div id="update-button-container">
             <button
               type="submit"
               className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
             >
               Update product
             </button>
+            </div>
+          <div id="destroy-button-container">
+          <button
+            type="button"
+            onClick={handleClick}
+            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+          >
+            Destroy product
+          </button>
+          </div>
           </div>
         </div>
-        <button
-          type="button"
-          onClick={handleClick}
-          className="mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
-        >
-          Destroy product
-        </button>
       </form>
-      <div id="destroy-button-container"></div>
     </div>
   );
 }

@@ -9,6 +9,7 @@ import { Signup } from "./Signup";
 import { Login } from "./Login";
 import { CartedProductsIndex } from "./CartedProductsIndex";
 import { ProductsShow2 } from "./ProductsShow2";
+import { CategorySelect } from "./Categories";
 
 export function Content() {
   const [products, setProducts] = useState([]);
@@ -17,12 +18,21 @@ export function Content() {
   const [currentProduct, setCurrentProduct] = useState({});
   const [cartedProducts, setCartedProducts] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
+  const [categories, setCategories] = useState([]);
 
-  const handleIndexProducts = () => {
+  const handleIndexProducts = (params) => {
     console.log("handleIndexProducts");
-    axios.get("http://localhost:3000/products.json").then((response) => {
+    axios.get("http://localhost:3000/products.json", { params }).then((response) => {
       console.log(response.data);
       setProducts(response.data);
+    });
+  };
+
+  const handleIndexCategories = () => {
+    console.log("handleIndexCategories");
+    axios.get("http://localhost:3000/categories.json").then((response) => {
+      console.log(response.data);
+      setCategories(response.data);
     });
   };
 
@@ -101,6 +111,7 @@ export function Content() {
   useEffect(handleIndexProducts, []);
   useEffect(handleIndexCartedProducts, []);
   useEffect(handleIsAdmin, []);
+  useEffect(handleIndexCategories, []);
 
   function pickShow(isAdmin) {
     if (isAdmin) {
@@ -127,10 +138,27 @@ export function Content() {
             element={<ProductsNew onCreateProduct={handleCreateProduct} suppliers={suppliers} />}
           />
           <Route path="/products-edit/:id" element={<ProductsShow />} />
-          <Route path="/products" element={<ProductsIndex products={products} onShowProduct={handleShowProduct} />} />
-          <Route path="/" element={<ProductsIndex products={products} onShowProduct={handleShowProduct} />} />
+          <Route
+            path="/products"
+            element={
+              <ProductsIndex
+                products={products}
+                productsupdate={handleIndexProducts}
+                onShowProduct={handleShowProduct}
+                categories={categories}
+              >
+                {" "}
+                <CategorySelect categories={categories} />{" "}
+              </ProductsIndex>
+            }
+          />
+          <Route
+            path="/"
+            element={<ProductsIndex categories={categories} products={products} onShowProduct={handleShowProduct} />}
+          />
           <Route path="/shoppingcart" element={<CartedProductsIndex cartedProducts={cartedProducts} />} />
           <Route path="/products/:id" element={<ProductsShow2 />} />
+          <Route path="/products/:category" element={<ProductsIndex />} />
         </Routes>
         <Modal show={isProductsShowVisible} onClose={handleClose}>
           {pickShow(isAdmin)}

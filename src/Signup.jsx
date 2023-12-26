@@ -23,7 +23,7 @@ export function Signup() {
 
   return (
     <div id="signup">
-      <h1 className="text-headers">Sign-up</h1>
+      <h1 className="text-headers">Create an Account</h1>
       <ul>
         {errors.map((error) => (
           <li key={error}>{error}</li>

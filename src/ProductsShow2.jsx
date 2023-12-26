@@ -1,6 +1,6 @@
 export function ProductsShow2(props) {
   return (
-    <div className="joint-button-container flex">
+    <div className="joint-form-container flex">
       <div className="mb-5">
         <p htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900">
           Name:

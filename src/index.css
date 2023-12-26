@@ -12,7 +12,7 @@ html {
 
 #page-container {
   position: relative;
-  min-height: 100vh;
+  min-height: 90vh;
 }
 
 #content-wrap {
@@ -91,7 +91,7 @@ html {
 
 .modal-main {
   position: fixed;
-  background: white;
+  background: #96B1AD;
   width: 60%;
   height: auto;
   top: 50%;
@@ -120,28 +120,25 @@ html {
   margin: 5px;
 }
 
-.joint-button-container {
+.joint-form-container {
   display: flex;
   flex-direction: column;
-  border: 2px;
-}
-
-#entire-form-container {
-  border: 2px;
+  padding: 5px;
+  justify-content: space-between;
+  background-color: #96B1AD;
 }
 
 #entire-form-except-button-container {
-width: 100%;
-border: 2px;
+flex-direction: column;
 }
 
-#submit-button-container {
-  border: 2px;
+#button-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-#destroy-button-container {
-  border: 2px;
-
+.product-cards {
+  background-color: #0d766e;
+  color: white;
 }
-
-
