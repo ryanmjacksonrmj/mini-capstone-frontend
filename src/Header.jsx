@@ -13,7 +13,6 @@ let createNavigation = () => {
   if (localStorage.jwt === undefined) {
     navigation = [
       { name: "Home", to: "/", current: false },
-      { name: "Genre", to: "/", current: false },
       { name: "Login", to: "/login", current: false },
       { name: "Create an Account", to: "/signup", current: false },
       { name: "README", to: "/readme", current: false },
@@ -22,14 +21,12 @@ let createNavigation = () => {
     // NEED TO FIGURE OUT HOW TO CHECK IF ADMIN ON FRONTEND
     navigation = [
       { name: "Home", to: "/", current: false },
-      { name: "Genre", to: "/", current: false },
       { name: "Create", to: "/products/new", current: false },
       { name: "README", to: "/readme", current: false },
     ];
   } else {
     navigation = [
       { name: "Home", to: "/", current: false },
-      { name: "Genre", to: "/", current: false },
       { name: "README", to: "/readme", current: false },
     ];
   }

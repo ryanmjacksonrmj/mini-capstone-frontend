@@ -55,22 +55,22 @@ export function ProductsShow(props) {
           </div>
           <div id="button-container">
             <div id="update-button-container">
-            <button
-              type="submit"
-              className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
-            >
-              Update product
-            </button>
+              <button
+                type="submit"
+                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+              >
+                Update product
+              </button>
             </div>
-          <div id="destroy-button-container">
-          <button
-            type="button"
-            onClick={handleClick}
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
-          >
-            Destroy product
-          </button>
-          </div>
+            <div id="destroy-button-container">
+              <button
+                type="button"
+                onClick={handleClick}
+                className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center"
+              >
+                Destroy product
+              </button>
+            </div>
           </div>
         </div>
       </form>

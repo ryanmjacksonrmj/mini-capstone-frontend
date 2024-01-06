@@ -1,4 +1,8 @@
 export function ProductsShow2(props) {
+  let USDollar = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
   return (
     <div className="joint-form-container flex">
       <div className="mb-5">
@@ -14,7 +18,7 @@ export function ProductsShow2(props) {
           Price:
         </p>
         <p className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
-          {props.product.price}
+          {USDollar.format(props.product.price)}
         </p>
       </div>
       <div className="mb-5">
@@ -26,5 +30,5 @@ export function ProductsShow2(props) {
         </p>
       </div>
     </div>
-  )
+  );
 }

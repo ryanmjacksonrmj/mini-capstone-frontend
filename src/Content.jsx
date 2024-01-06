@@ -16,40 +16,28 @@ export function Content() {
   const [suppliers, setSuppliers] = useState([]);
   const [isProductsShowVisible, setIsProductsShowVisible] = useState(false);
   const [currentProduct, setCurrentProduct] = useState({});
-  const [cartedProducts, setCartedProducts] = useState([]);
   const [isAdmin, setIsAdmin] = useState(false);
   const [categories, setCategories] = useState([]);
 
   const handleIndexProducts = (params) => {
-    console.log("handleIndexProducts");
-    axios.get("http://localhost:3000/products.json", { params }).then((response) => {
-      console.log(response.data);
+    if (params === undefined) {
+      params = { id: "1000" };
+    }
+    axios.get(`http://localhost:3000/products.json?id=${params.id}`).then((response) => {
       setProducts(response.data);
     });
   };
 
   const handleIndexCategories = () => {
-    console.log("handleIndexCategories");
     axios.get("http://localhost:3000/categories.json").then((response) => {
-      console.log(response.data);
       setCategories(response.data);
     });
   };
 
-  const handleIndexCartedProducts = () => {
-    console.log("handleIndexCartedProducts");
-    axios.get("http://localhost:3000/carted_products.json").then((response) => {
-      console.log(response.data);
-      setCartedProducts(response.data);
-    });
-  };
-
   const handleCreateProduct = (params, successCallback) => {
-    console.log("handleCreateProduct", params);
     axios
       .post("http://localhost:3000/products.json", params)
       .then((response) => {
-        console.log(response.data);
         setProducts([...products, response.data]);
         successCallback();
       })
@@ -59,18 +47,15 @@ export function Content() {
   };
 
   const handleShowProduct = (product) => {
-    console.log("handleShowProduct", product);
     setIsProductsShowVisible(true);
     setCurrentProduct(product);
   };
 
   const handleClose = () => {
-    console.log("handleClose");
     setIsProductsShowVisible(false);
   };
 
   const handleUpdateProduct = (id, params, successCallback) => {
-    console.log("handleUpdateProduct", params);
     axios.patch(`http://localhost:3000/products/${id}.json`, params).then((response) => {
       setProducts(
         products.map((product) => {
@@ -87,9 +72,8 @@ export function Content() {
   };
 
   const handleDestroyProduct = (product) => {
-    console.log("handleDestroyProduct", product);
     axios.delete(`http://localhost:3000/products/${product.id}.json`).then((response) => {
-      console.log(response.data);
+      console.log(response);
       setProducts(products.filter((p) => p.id !== product.id));
       handleClose();
     });
@@ -109,7 +93,6 @@ export function Content() {
 
   useEffect(handleIndexSuppliers, []);
   useEffect(handleIndexProducts, []);
-  useEffect(handleIndexCartedProducts, []);
   useEffect(handleIsAdmin, []);
   useEffect(handleIndexCategories, []);
 
@@ -154,9 +137,19 @@ export function Content() {
           />
           <Route
             path="/"
-            element={<ProductsIndex categories={categories} products={products} onShowProduct={handleShowProduct} />}
+            element={
+              <ProductsIndex
+                products={products}
+                productsupdate={handleIndexProducts}
+                onShowProduct={handleShowProduct}
+                categories={categories}
+              >
+                {" "}
+                <CategorySelect categories={categories} />{" "}
+              </ProductsIndex>
+            }
           />
-          <Route path="/shoppingcart" element={<CartedProductsIndex cartedProducts={cartedProducts} />} />
+          <Route path="/shoppingcart" onShowProduct={handleShowProduct} element={<CartedProductsIndex />} />
           <Route path="/products/:id" element={<ProductsShow2 />} />
           <Route path="/products/:category" element={<ProductsIndex />} />
         </Routes>
