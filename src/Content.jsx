@@ -72,7 +72,7 @@ export function Content() {
   };
 
   const handleDestroyProduct = (product) => {
-    axios.delete(`http://localhost:3000/products/${product.id}.json`).then((response) => {
+    axios.patch(`http://localhost:3000/products2/${product.id}.json`).then((response) => {
       console.log(response);
       setProducts(products.filter((p) => p.id !== product.id));
       handleClose();
@@ -82,7 +82,6 @@ export function Content() {
   const handleIndexSuppliers = () => {
     console.log("handleIndexSuppliers");
     axios.get("http://localhost:3000/suppliers.json").then((response) => {
-      console.log(response.data);
       setSuppliers(response.data);
     });
   };
@@ -97,7 +96,7 @@ export function Content() {
   useEffect(handleIndexCategories, []);
 
   function pickShow(isAdmin) {
-    if (isAdmin) {
+    if (isAdmin == "true") {
       return (
         <ProductsShow
           product={currentProduct}

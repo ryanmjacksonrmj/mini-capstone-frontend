@@ -8,6 +8,14 @@ import { Link } from "react-router-dom";
 import { LogoutLink } from "./LogoutLink";
 import { LoginLink } from "./LoginLink";
 
+let setUsername = () => {
+  let username = localStorage.getItem("username");
+  if (username === null) {
+    username = "Not logged in";
+  }
+  return username;
+};
+
 let createNavigation = () => {
   let navigation;
   if (localStorage.jwt === undefined) {
@@ -39,6 +47,8 @@ function classNames(...classes) {
 
 export function Header() {
   let navigation = createNavigation();
+  let username = setUsername();
+
   return (
     <header>
       <Disclosure as="nav" className="bg-teal-700">
@@ -83,14 +93,6 @@ export function Header() {
                   </div>
                 </div>
                 <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                  {/* <button
-                    type="button"
-                    className="relative rounded-full bg-teal-700 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-teal-700"
-                  >
-                    <span className="absolute -inset-1.5" />
-                    <span className="sr-only">View notifications</span>
-                    <BellIcon className="h-6 w-6" aria-hidden="true" />
-                  </button> */}
                   <Menu as="div" className="relative ml-3">
                     <div>
                       <Menu.Button className="relative flex rounded-full bg-teal-700 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-teal-700">
@@ -104,7 +106,7 @@ export function Header() {
                   {/* Profile dropdown */}
                   <Menu as="div" className="relative ml-8">
                     <div>
-                      <Menu.Button className="relative flex rounded-full bg-teal-700 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-teal-700">
+                      <Menu.Button className="relative flex rounded-full bg-teal-700 text-sm focus:outline-none focus:ring-white focus:ring-offset-2 focus:ring-offset-teal-700">
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">Open user menu</span>
                         <img className="h-8 w-8 rounded-full filter-white" src={loginIcon} alt="" />
@@ -120,37 +122,24 @@ export function Header() {
                       leaveTo="transform opacity-0 scale-95"
                     >
                       <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                        {/* <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              href="#"
-                              className={classNames(
-                                active ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm text-gray-700"
-                              )}
-                            >
-                              Your Profile
-                            </a>
-                          )}
-                        </Menu.Item> */}
-                        {/* <Menu.Item>
-                          {({ active }) => (
-                            <a
-                              href="#"
-                              className={classNames(
-                                active ? "bg-gray-100" : "",
-                                "block px-4 py-2 text-sm text-gray-700"
-                              )}
-                            >
-                              Settings
-                            </a>
-                          )}
-                        </Menu.Item> */}
                         {localStorage.jwt === undefined ? <LoginLink /> : <LogoutLink />}
                       </Menu.Items>
                     </Transition>
                   </Menu>
                 </div>
+                <Menu
+                  as="div"
+                  className="username-header-text relative ml-3 text-gray-300 block rounded-md px-3 py-2 text-base font-small"
+                >
+                  <div
+                    className="text-gray-300 block rounded-md px-3 py-2 text-base font-small"
+
+                    // ,
+                    //   ""
+                  >
+                    {username}
+                  </div>
+                </Menu>
               </div>
             </div>
 

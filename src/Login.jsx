@@ -14,7 +14,6 @@ export function Login() {
     event.preventDefault();
     setErrors([]);
     const params = new FormData(event.target);
-    console.log(params.values);
     axios
       .post("http://localhost:3000/sessions.json", params)
       .then((response) => {
@@ -22,6 +21,7 @@ export function Login() {
         axios.defaults.headers.common["Authorization"] = "Bearer " + response.data.jwt;
         localStorage.setItem("jwt", response.data.jwt);
         localStorage.setItem("admin", response.data.admin);
+        localStorage.setItem("username", response.data.email);
         event.target.reset();
         window.location.href = "/"; // Change this to hide a modal, redirect to a specific page, etc.
       })

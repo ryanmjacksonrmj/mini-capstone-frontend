@@ -103,7 +103,7 @@ html {
 }
 
 .modal-main button.close {
-  font-size: 2em;
+  font-size: 1.5em;
   background: none;
   border: none;
   position: absolute;
@@ -262,7 +262,7 @@ select:hover {
 .carted-products-interior-container-1 {
 display: flex;
 flex-direction: column;
-justify-content: start;
+justify-content: flex-start;
 align-items: center;
 width: 20%;
 }
@@ -284,8 +284,8 @@ margin: 0rem 1rem 0rem 1rem;
 width: 23%;
 display: flex;
 flex-direction: row;
-align-items:start;
-justify-content: end;
+align-items: flex-start;
+justify-content: flex-end;
 padding: 0rem 1rem 0rem 1rem;
 }
 
@@ -293,7 +293,7 @@ padding: 0rem 1rem 0rem 1rem;
 width: 7%;
 display: flex;
 flex-direction: row;
-justify-content: end;
+justify-content: flex-end;
 margin-right: 1.5rem;
 }
 
@@ -331,7 +331,7 @@ border-top:2px solid #000;
 .cp-subtotal-int-int-3-1{
 display: flex;
 flex-direction: row;
-align-items: end;
+align-items: flex-end;
 justify-content: space-between;
 width: 100%
 }
@@ -339,22 +339,66 @@ width: 100%
 .cp-subtotal-int-int-3-1-1{
   display: flex;
   width: 76%;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .cp-subtotal-int-int-3-1-2{
   display: flex;
   width: 24%;
-  justify-content: end;
+  justify-content: flex-end;
+  font-weight: bold;
+  margin-right: 1.5rem;
+}
+
+.cp-subtotal-int-int-3-4{
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+  width: 100%;
+  margin-top: 2rem;
+  padding-right: 3rem;
+}
+
+.cp-subtotal-int-int-3-2-1{
+  display: flex;
+  flex-direction: row;
+  width: 76%;
+  justify-content: flex-end;
+}
+
+.cp-subtotal-int-int-3-2-2{
+  display: flex;
+  width: 24%;
+  justify-content: flex-end;
+  font-weight: bold;
+  margin-right: 1.5rem;
+}
+.cp-subtotal-int-int-3-3-1{
+  display: flex;
+  width: 76%;
+  justify-content: flex-end;
+}
+
+.cp-subtotal-int-int-3-3-2{
+  display: flex;
+  width: 24%;
+  justify-content: flex-end;
   font-weight: bold;
   margin-right: 1.5rem;
 }
 
 .cp-subtotal-int-int-3-2{
   display: flex;
-  justify-content: end;
-  align-content: center;
-  width: 100%;
-  margin-top: 2rem;
-  padding-right: 3rem;
-}
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  width: 100%
+  }
+
+  .cp-subtotal-int-int-3-3{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 100%
+    }

@@ -8,7 +8,7 @@ export function CartedProductsIndex() {
     axios
       .post("http://localhost:3000/orders.json")
       .then((response) => {
-        console.log("THIS", response.data, "THAT");
+        console.log(response.data);
         window.location.href = "/";
       })
       .catch((error) => {
@@ -25,7 +25,6 @@ export function CartedProductsIndex() {
   };
 
   const handleIndexCartedProducts = () => {
-    console.log("handleIndexCartedProducts");
     axios.get("http://localhost:3000/carted_products.json").then((response) => {
       setCartedProducts(response.data);
     });
@@ -50,9 +49,9 @@ export function CartedProductsIndex() {
       </div>
     );
   } else {
-    console.log("THIS", cartedProducts, "THIS");
     let subtotal = 0.0;
     let quantity = 0;
+    let tax = 0.09;
     for (let i = 0; i < cartedProducts.length; i++) {
       subtotal = subtotal + Number(cartedProducts[i].subtotal);
       quantity = quantity + Number(cartedProducts[i].quantity);
@@ -97,6 +96,14 @@ export function CartedProductsIndex() {
                 <div className="cp-subtotal-int-int-3-1-2">{USDollar.format(subtotal)}</div>
               </div>
               <div className="cp-subtotal-int-int-3-2">
+                <div className="cp-subtotal-int-int-3-2-1">Tax: </div>
+                <div className="cp-subtotal-int-int-3-2-2">{USDollar.format(subtotal * tax)}</div>
+              </div>
+              <div className="cp-subtotal-int-int-3-3">
+                <div className="cp-subtotal-int-int-3-3-1">Total: </div>
+                <div className="cp-subtotal-int-int-3-3-2">{USDollar.format(subtotal + subtotal * tax)}</div>
+              </div>
+              <div className="cp-subtotal-int-int-3-4">
                 <button onClick={handleClick}>Place Order</button>
               </div>
             </div>

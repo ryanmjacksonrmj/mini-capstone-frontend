@@ -48,9 +48,8 @@ export function ProductsShow(props) {
                 id="description"
                 rows="8"
                 className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-              >
-                {props.product.description}
-              </textarea>
+                defaultValue={props.product.description}
+              ></textarea>
             </div>
           </div>
           <div id="button-container">
