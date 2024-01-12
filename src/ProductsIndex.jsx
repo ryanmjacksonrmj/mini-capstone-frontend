@@ -37,7 +37,7 @@ export function ProductsIndex(props) {
     setErrors([]);
     const params = new FormData(event.target);
     axios
-      .post("http://localhost:3000/carted_products.json", params)
+      .post("/carted_products.json", params)
       .then((response) => {
         event.target.reset();
       })

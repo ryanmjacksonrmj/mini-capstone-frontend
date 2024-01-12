@@ -6,7 +6,7 @@ export function CartedProductsIndex() {
 
   const handleClick = () => {
     axios
-      .post("http://localhost:3000/orders.json")
+      .post("/orders.json")
       .then((response) => {
         window.location.href = "/";
       })
@@ -24,7 +24,7 @@ export function CartedProductsIndex() {
   };
 
   const handleIndexCartedProducts = () => {
-    axios.get("http://localhost:3000/carted_products.json").then((response) => {
+    axios.get("/carted_products.json").then((response) => {
       setCartedProducts(response.data);
     });
   };

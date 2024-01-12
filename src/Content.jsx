@@ -23,20 +23,20 @@ export function Content() {
     if (params === undefined) {
       params = { id: "1000" };
     }
-    axios.get(`http://localhost:3000/products.json?id=${params.id}`).then((response) => {
+    axios.get(`/products.json?id=${params.id}`).then((response) => {
       setProducts(response.data);
     });
   };
 
   const handleIndexCategories = () => {
-    axios.get("http://localhost:3000/categories.json").then((response) => {
+    axios.get("/categories.json").then((response) => {
       setCategories(response.data);
     });
   };
 
   const handleCreateProduct = (params, successCallback) => {
     axios
-      .post("http://localhost:3000/products.json", params)
+      .post("/products.json", params)
       .then((response) => {
         setProducts([...products, response.data]);
         successCallback();
@@ -56,7 +56,7 @@ export function Content() {
   };
 
   const handleUpdateProduct = (id, params, successCallback) => {
-    axios.patch(`http://localhost:3000/products/${id}.json`, params).then((response) => {
+    axios.patch(`/products/${id}.json`, params).then((response) => {
       setProducts(
         products.map((product) => {
           if (product.id === response.data.id) {
@@ -72,14 +72,14 @@ export function Content() {
   };
 
   const handleDestroyProduct = (product) => {
-    axios.patch(`http://localhost:3000/products2/${product.id}.json`).then((response) => {
+    axios.patch(`/products2/${product.id}.json`).then((response) => {
       setProducts(products.filter((p) => p.id !== product.id));
       handleClose();
     });
   };
 
   const handleIndexSuppliers = () => {
-    axios.get("http://localhost:3000/suppliers.json").then((response) => {
+    axios.get("/suppliers.json").then((response) => {
       setSuppliers(response.data);
     });
   };
