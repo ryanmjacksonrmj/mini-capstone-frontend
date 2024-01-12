@@ -39,11 +39,9 @@ export function ProductsIndex(props) {
     axios
       .post("http://localhost:3000/carted_products.json", params)
       .then((response) => {
-        console.log(response.data);
         event.target.reset();
       })
       .catch((error) => {
-        console.log(error.response);
         setErrors(["You must be logged in to add something to your cart"]);
       });
   };

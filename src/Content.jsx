@@ -73,14 +73,12 @@ export function Content() {
 
   const handleDestroyProduct = (product) => {
     axios.patch(`http://localhost:3000/products2/${product.id}.json`).then((response) => {
-      console.log(response);
       setProducts(products.filter((p) => p.id !== product.id));
       handleClose();
     });
   };
 
   const handleIndexSuppliers = () => {
-    console.log("handleIndexSuppliers");
     axios.get("http://localhost:3000/suppliers.json").then((response) => {
       setSuppliers(response.data);
     });
